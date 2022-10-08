@@ -17,6 +17,7 @@ import {
 
 import InputFileUpload from '../../components/InputFileUpload';
 import PanelHeader from '../../components/PanelHeader';
+import SubmittedProjects from '../../components/SubmittedProjects';
 
 function ResidentsPanel(): JSX.Element {
   return (
@@ -174,8 +175,8 @@ function ResidentsPanel(): JSX.Element {
           <TabPanel>
             <p>two!</p>
           </TabPanel>
-          <TabPanel>
-            <p>three!</p>
+          <TabPanel h="100%">
+            <SubmittedProjects />
           </TabPanel>
         </TabPanels>
       </Flex>
