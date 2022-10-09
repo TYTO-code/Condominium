@@ -17,6 +17,7 @@ import {
 
 import InputFileUpload from '../../components/InputFileUpload';
 import PanelHeader from '../../components/PanelHeader';
+import RenovationProjects from '../../components/RenovationProjects';
 import SubmittedProjects from '../../components/SubmittedProjects';
 
 function ResidentsPanel(): JSX.Element {
@@ -173,7 +174,7 @@ function ResidentsPanel(): JSX.Element {
             </Flex>
           </TabPanel>
           <TabPanel>
-            <p>two!</p>
+            <RenovationProjects />
           </TabPanel>
           <TabPanel h="100%">
             <SubmittedProjects />
