@@ -12,12 +12,17 @@ function InputFileUpload({
   label
 }: InputFileUploadProps): JSX.Element {
   return (
-    <Flex direction="column" w="100%" border="none" outline="none">
+    <Flex
+      direction="column"
+      w="100%"
+      border="none"
+      outline="none"
+      h="100%"
+      justify="center"
+      align="center"
+    >
       <label htmlFor="teste">{label}</label>
       <input className="custom-file-input" type="file" />
-      {/* <InputRightAddon>
-        <DownloadIcon />
-      </InputRightAddon> */}
     </Flex>
   );
 }

@@ -20,13 +20,12 @@ import {
   Stack,
   Input,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
   Tbody,
-  Tfoot,
-  Td
+  Td,
+  Box
 } from '@chakra-ui/react';
 import './styles.css';
 
@@ -135,8 +134,16 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           </ModalFooter>
         </ModalContent>
       </Modal>
-      <Text as="b">{title}</Text>
-      <ButtonGroup gap={4}>
+      <Box
+        w={{
+          base: '80px',
+          md: '200px'
+        }}
+        h="100%"
+      >
+        <Text as="b">{title}</Text>
+      </Box>
+      <ButtonGroup>
         <Button onClick={onOpen}>Ver funcionários</Button>
         <Button onClick={() => handleOpenCreateEmployee()}>
           <AddIcon />

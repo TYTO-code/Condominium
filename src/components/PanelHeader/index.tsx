@@ -17,7 +17,9 @@ function PanelHeader({ children, title }: PanelHeaderProps): JSX.Element {
       <Heading alignSelf="center" as="h4" size="md">
         {title}
       </Heading>
-      <Box alignSelf="end">{children}</Box>
+      <Box mt={4} alignSelf="end">
+        {children}
+      </Box>
     </Flex>
   );
 }
