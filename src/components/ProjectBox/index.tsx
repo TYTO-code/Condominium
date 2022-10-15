@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { AddIcon, CloseIcon, InfoIcon } from '@chakra-ui/icons';
+import { AddIcon, CloseIcon, InfoIcon, TimeIcon } from '@chakra-ui/icons';
 import {
   Button,
   Center,
@@ -156,7 +156,7 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           <InfoIcon />
         </Center>
       </Tooltip> */}
-      <Tooltip label="Projeto reprovado" aria-label="Projeto reprovado">
+      {/* <Tooltip label="Projeto reprovado" aria-label="Projeto reprovado">
         <Center
           className="shadow"
           w="50px"
@@ -165,6 +165,17 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           bg="red.500"
         >
           <CloseIcon />
+        </Center>
+      </Tooltip> */}
+      <Tooltip label="Projeto em análise" aria-label="Projeto em análise">
+        <Center
+          className="shadow"
+          w="50px"
+          h="50px"
+          borderRadius="full"
+          bg="whiteAlpha.400"
+        >
+          <TimeIcon />
         </Center>
       </Tooltip>
       {/* <Tooltip label="Projeto aprovado" aria-label="Projeto aprovado">
