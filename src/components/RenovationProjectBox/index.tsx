@@ -51,7 +51,10 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
       w="100%"
       mt="16px"
       p={2}
-      direction="row"
+      direction={{
+        base: 'column',
+        md: 'row'
+      }}
       justifyContent="space-around"
       alignItems="center"
       bg="gray.300"
