@@ -18,6 +18,7 @@ function InputFileUpload({
       border="none"
       outline="none"
       h="100%"
+      gap={1}
       justify="center"
       align="center"
     >
