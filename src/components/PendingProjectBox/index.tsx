@@ -20,7 +20,8 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   NumberInputStepper,
-  Center
+  Center,
+  Input
 } from '@chakra-ui/react';
 import './styles.css';
 
@@ -71,6 +72,12 @@ function PendingProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           <ModalBody>
             {isAproveProjectModal ? (
               <Stack pb={2}>
+                <Input
+                  variant="outline"
+                  borderColor="blue.200"
+                  outlineColor="blue.200"
+                  placeholder="Resposta"
+                />
                 <Text>Defina o prazo (em dias) estimado para a reforma:</Text>
                 <NumberInput defaultValue={1} min={1} max={60}>
                   <NumberInputField />
@@ -81,9 +88,15 @@ function PendingProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
                 </NumberInput>
               </Stack>
             ) : (
-              <Center>
+              <Flex flexDirection="column" gap={2}>
                 <Text>Tem certeza que deseja reprovar esse projeto?</Text>
-              </Center>
+                <Input
+                  variant="outline"
+                  borderColor="blue.200"
+                  outlineColor="blue.200"
+                  placeholder="Resposta"
+                />
+              </Flex>
             )}
           </ModalBody>
 
@@ -127,9 +140,6 @@ function PendingProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
       >
         <Text as="b">{title}</Text>
       </Flex>
-      <ButtonGroup>
-        <Button>Responder</Button>
-      </ButtonGroup>
       <ButtonGroup>
         <Button
           colorScheme="whatsapp"
