@@ -16,14 +16,30 @@ import PendingProjectBox from '../../components/PendingProjectBox';
 function ADMPanel(): JSX.Element {
   return (
     <Tabs h="100%" variant="unstyled">
-      <Flex align="center" h="100%">
+      <Flex
+        align="center"
+        direction={{
+          base: 'column-reverse',
+          md: 'row'
+        }}
+        h="100%"
+      >
         <TabList
-          w="300px"
-          flexDirection="column"
+          w={{
+            base: '100%',
+            md: '300px'
+          }}
+          h={{
+            base: '80px',
+            md: '100%'
+          }}
+          flexDirection={{
+            base: 'row',
+            md: 'column'
+          }}
           gap={2}
           justifyContent="center"
           borderRight="4px"
-          h="100%"
           borderColor="gray.400"
         >
           <Tab bg="gray.300" _selected={{ bg: 'gray.400' }}>
@@ -39,12 +55,15 @@ function ADMPanel(): JSX.Element {
 
         <TabPanels h="100%">
           <TabPanel h="100%">
-            <Flex direction="column">
+            <Flex direction="column" h="100%">
               <PanelHeader title="Painel administrativo" />
               <Center h="50px" gap={2} alignSelf="start">
                 <Text fontSize="xl">Projetos pendentes</Text>
               </Center>
-              <Stack spacing={3} overflowY="auto">
+              <Stack h="400px" spacing={3} overflowY="auto">
+                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
+                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
+                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
                 <PendingProjectBox title="COND/BLOCO/APT/NOME" />
                 <PendingProjectBox title="COND/BLOCO/APT/NOME" />
                 <PendingProjectBox title="COND/BLOCO/APT/NOME" />
