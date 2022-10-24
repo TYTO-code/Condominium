@@ -23,11 +23,15 @@ function PanelHeader({
         <Heading alignSelf="center" as="h4" size="md">
           {title}
         </Heading>
-        <Text alignSelf="center">{subtitle}</Text>
+        <Text alignSelf="center" fontSize="20px">
+          {subtitle}
+        </Text>
       </Flex>
-      <Box mt={4} alignSelf="end">
-        {children}
-      </Box>
+      {children != null && (
+        <Box mt={-6} alignSelf="end">
+          {children}
+        </Box>
+      )}
     </Flex>
   );
 }
