@@ -27,11 +27,17 @@ function PanelHeader({
           {subtitle}
         </Text>
       </Flex>
-      {children != null && (
-        <Box mt={-6} alignSelf="end">
+      {children != null ? (
+        <Box
+          mt={{
+            base: 4,
+            md: -6
+          }}
+          alignSelf="end"
+        >
           {children}
         </Box>
-      )}
+      ) : null}
     </Flex>
   );
 }
