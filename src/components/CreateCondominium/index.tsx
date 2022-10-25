@@ -29,7 +29,7 @@ function CreateCondominium({ children }: CreateCondominiumProps): JSX.Element {
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Quantidade de blocos</FormLabel>
-          <NumberInput max={50} min={10}>
+          <NumberInput max={10} min={1}>
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -39,7 +39,7 @@ function CreateCondominium({ children }: CreateCondominiumProps): JSX.Element {
         </FormControl>
         <FormControl isRequired>
           <FormLabel>Quantidade de apartamentos</FormLabel>
-          <NumberInput max={50} min={10}>
+          <NumberInput max={100} min={1}>
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
