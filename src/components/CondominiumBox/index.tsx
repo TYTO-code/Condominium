@@ -14,7 +14,14 @@ import {
   ButtonGroup,
   Stack,
   Input,
-  Box
+  Box,
+  TableContainer,
+  Table,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td
 } from '@chakra-ui/react';
 
 import ADMButtonsBox from '../ADMButtonsBox';
@@ -39,37 +46,48 @@ function CondominiumBox({ children, name }: CondominiumBoxProps): JSX.Element {
     >
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent w="700px">
           <ModalHeader>
-            <h1>Editar associado</h1>
+            <h1>Ver ID moradores</h1>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Stack spacing={4}>
-              <Input
-                variant="outline"
-                borderColor="blue.200"
-                placeholder="Nome"
-              />
-              <Input
-                variant="outline"
-                borderColor="blue.200"
-                placeholder="Email"
-              />
-            </Stack>
+            <TableContainer>
+              <Table variant="simple" colorScheme="teal">
+                <Thead>
+                  <Tr>
+                    <Th>ID</Th>
+                    <Th>Apartamento</Th>
+                  </Tr>
+                </Thead>
+                <Tbody>
+                  <Tr>
+                    <Td>ID Gerado</Td>
+                    <Td>01</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>ID Gerado</Td>
+                    <Td>02</Td>
+                  </Tr>
+                  <Tr>
+                    <Td>ID Gerado</Td>
+                    <Td>03</Td>
+                  </Tr>
+                </Tbody>
+              </Table>
+            </TableContainer>
           </ModalBody>
 
           <ModalFooter>
             <ButtonGroup>
               <Button
-                colorScheme="red"
+                colorScheme="gray"
                 mr={3}
                 variant="ghost"
                 onClick={onClose}
               >
-                Cancelar
+                Fechar
               </Button>
-              <Button colorScheme="green">Editar</Button>
             </ButtonGroup>
           </ModalFooter>
         </ModalContent>
@@ -83,7 +101,7 @@ function CondominiumBox({ children, name }: CondominiumBoxProps): JSX.Element {
         <Text as="b">{name}</Text>
       </Box>
       <Box>
-        <Button onClick={onOpen}>Ver moradores</Button>
+        <Button onClick={onOpen}>Ver ID moradores</Button>
       </Box>
       <ADMButtonsBox />
     </Flex>
