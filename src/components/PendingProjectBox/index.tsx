@@ -148,7 +148,7 @@ function PendingProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
       </Flex>
       <ButtonGroup>
         <Button
-          colorScheme="whatsapp"
+          colorScheme="green"
           onClick={() => handleOpenAproveProjectModal()}
         >
           Aprovar

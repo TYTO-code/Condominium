@@ -38,6 +38,11 @@ function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
     onOpen();
   }
 
+  function handleOpenDeleteModal(): void {
+    setIsEditModal(false);
+    onOpen();
+  }
+
   function handleCloseModal(): void {
     setIsEditModal(false);
     onClose();
@@ -121,10 +126,10 @@ function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
         </ModalContent>
       </Modal>
       <ButtonGroup>
-        <Button onClick={() => handleOpenEditModal()}>
+        <Button colorScheme="facebook" onClick={() => handleOpenEditModal()}>
           <EditIcon />
         </Button>
-        <Button onClick={onOpen}>
+        <Button colorScheme="red" onClick={() => handleOpenDeleteModal()}>
           <DeleteIcon />
         </Button>
       </ButtonGroup>

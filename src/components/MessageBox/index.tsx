@@ -105,7 +105,7 @@ function MessageBox({
                 >
                   Cancelar
                 </Button>
-                <Button colorScheme="whatsapp">Responder</Button>
+                <Button colorScheme="green">Responder</Button>
               </ButtonGroup>
             </ModalFooter>
           </ModalContent>

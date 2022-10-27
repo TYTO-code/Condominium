@@ -10,7 +10,7 @@ function App(): JSX.Element {
     <Flex direction="column" w="100%" h="100vh">
       <TopBar />
       <Box w="100%" flex={1}>
-        <ADMPanel />
+        <ResidentsPanel />
       </Box>
       <Footer />
     </Flex>

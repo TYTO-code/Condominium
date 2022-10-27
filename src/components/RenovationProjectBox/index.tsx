@@ -74,6 +74,9 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           </ModalBody>
 
           <ModalFooter>
+            <Button colorScheme="gray" mr={3} variant="ghost" onClick={onClose}>
+              Fechar
+            </Button>
             <Button
               colorScheme="green"
               onClick={() => {

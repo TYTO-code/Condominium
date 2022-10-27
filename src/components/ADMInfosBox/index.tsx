@@ -90,7 +90,7 @@ function ADMInfosBox({ children, name, email }: ADMInfosBoxProps): JSX.Element {
         <Text as="b">{email}</Text>
       </Box>
       <ButtonGroup>
-        <Button onClick={onOpen}>
+        <Button colorScheme="facebook" onClick={onOpen}>
           <EditIcon />
         </Button>
       </ButtonGroup>

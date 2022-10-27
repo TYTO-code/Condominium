@@ -123,7 +123,7 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
               </ButtonGroup>
             ) : (
               <Button
-                colorScheme="red"
+                colorScheme="gray"
                 mr={3}
                 variant="ghost"
                 onClick={onClose}
@@ -145,7 +145,7 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
       </Box>
       <ButtonGroup>
         <Button onClick={onOpen}>Ver funcionários</Button>
-        <Button onClick={() => handleOpenCreateEmployee()}>
+        <Button colorScheme="green" onClick={() => handleOpenCreateEmployee()}>
           <AddIcon />
         </Button>
       </ButtonGroup>
