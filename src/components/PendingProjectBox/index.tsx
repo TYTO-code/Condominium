@@ -24,6 +24,7 @@ import {
   Input
 } from '@chakra-ui/react';
 import './styles.css';
+import { DownloadIcon } from '@chakra-ui/icons';
 
 interface ProjectBoxProps {
   children?: JSX.Element;
@@ -139,6 +140,11 @@ function PendingProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
         alignItems="center"
       >
         <Text as="b">{title}</Text>
+      </Flex>
+      <Flex>
+        <Button rightIcon={<DownloadIcon />} colorScheme="orange">
+          Analisar
+        </Button>
       </Flex>
       <ButtonGroup>
         <Button
