@@ -12,6 +12,8 @@ import {
 
 import PanelHeader from '../../components/PanelHeader';
 import PendingProjectBox from '../../components/PendingProjectBox';
+import TabHome from '../../components/TabHome';
+import TabMessages from '../../components/TabMessages';
 import TabUsers from '../../components/TabUsers';
 
 function ADMPanel(): JSX.Element {
@@ -44,6 +46,9 @@ function ADMPanel(): JSX.Element {
           borderColor="gray.400"
         >
           <Tab bg="gray.300" _selected={{ bg: 'gray.400' }}>
+            Recebidos
+          </Tab>
+          <Tab bg="gray.300" _selected={{ bg: 'gray.400' }}>
             Envios de projetos
           </Tab>
           <Tab bg="gray.300" _selected={{ bg: 'gray.400' }}>
@@ -53,8 +58,10 @@ function ADMPanel(): JSX.Element {
             Mensagens
           </Tab>
         </TabList>
-
         <TabPanels h="100%">
+          <TabPanel h="100%">
+            <TabHome />
+          </TabPanel>
           <TabPanel h="100%">
             <Flex direction="column" h="100%">
               <PanelHeader title="Painel administrativo" />
@@ -75,7 +82,7 @@ function ADMPanel(): JSX.Element {
             <TabUsers />
           </TabPanel>
           <TabPanel h="100%">
-            <h1>Mensagens</h1>
+            <TabMessages />
           </TabPanel>
         </TabPanels>
       </Flex>
