@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from 'react';
+
 import {
   Button,
   Flex,
@@ -11,7 +13,9 @@ import {
   ModalBody,
   ModalCloseButton,
   ButtonGroup,
-  Input
+  Input,
+  FormErrorMessage,
+  FormControl
 } from '@chakra-ui/react';
 import './styles.css';
 
@@ -26,6 +30,18 @@ function MessageBox({
   message
 }: MessageBoxProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [answer, setAnswer] = useState<string | null>(null);
+
+  const handleAprovedAnswerChange = (e: ChangeEvent<HTMLInputElement>): void =>
+    setAnswer(e.target.value);
+
+  const answerIncorrect = answer === '';
+
+  function handleCloseModal(): void {
+    setAnswer(null);
+    onClose();
+  }
 
   return (
     <Flex direction="column">
@@ -77,7 +93,7 @@ function MessageBox({
         alignItems="center"
         bg="gray.300"
       >
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={() => handleCloseModal()}>
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>
@@ -86,12 +102,22 @@ function MessageBox({
             <ModalCloseButton />
             <ModalBody>
               <Flex flexDirection="column" gap={2}>
-                <Input
-                  variant="outline"
-                  borderColor="blue.200"
-                  outlineColor="blue.200"
-                  placeholder="Resposta"
-                />
+                <FormControl isInvalid={answerIncorrect}>
+                  <Input
+                    value={answer ?? ''}
+                    onChange={handleAprovedAnswerChange}
+                    variant="outline"
+                    borderColor="blue.200"
+                    outlineColor="blue.200"
+                    maxLength={100}
+                    placeholder="Resposta"
+                  />
+                  {answerIncorrect && (
+                    <FormErrorMessage>
+                      A resposta ao cliente é obrigatória!
+                    </FormErrorMessage>
+                  )}
+                </FormControl>
               </Flex>
             </ModalBody>
 
@@ -101,11 +127,13 @@ function MessageBox({
                   colorScheme="gray"
                   mr={3}
                   variant="ghost"
-                  onClick={onClose}
+                  onClick={() => handleCloseModal()}
                 >
                   Cancelar
                 </Button>
-                <Button colorScheme="green">Responder</Button>
+                <Button disabled={answerIncorrect} colorScheme="green">
+                  Responder
+                </Button>
               </ButtonGroup>
             </ModalFooter>
           </ModalContent>
