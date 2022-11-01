@@ -14,6 +14,7 @@ import PanelHeader from '../../components/PanelHeader';
 import PendingProjectBox from '../../components/PendingProjectBox';
 import TabHome from '../../components/TabHome';
 import TabMessages from '../../components/TabMessages';
+import TabSubmittedProjects from '../../components/TabSubmittedProjects';
 import TabUsers from '../../components/TabUsers';
 
 function ADMPanel(): JSX.Element {
@@ -63,20 +64,7 @@ function ADMPanel(): JSX.Element {
             <TabHome />
           </TabPanel>
           <TabPanel h="100%">
-            <Flex direction="column" h="100%">
-              <PanelHeader title="Painel administrativo" />
-              <Center h="50px" gap={2} alignSelf="start">
-                <Text fontSize="xl">Projetos pendentes</Text>
-              </Center>
-              <Stack h="400px" spacing={3} overflowY="auto">
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-                <PendingProjectBox title="COND/BLOCO/APT/NOME" />
-              </Stack>
-            </Flex>
+            <TabSubmittedProjects />
           </TabPanel>
           <TabPanel h="100%">
             <TabUsers />
