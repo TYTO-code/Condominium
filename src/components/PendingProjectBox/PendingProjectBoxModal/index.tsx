@@ -137,7 +137,10 @@ function PendingProjectBoxModal(): JSX.Element {
                 >
                   Cancelar
                 </Button>
-                <Button disabled={aprovedAnswerIncorrect} colorScheme="green">
+                <Button
+                  disabled={aprovedAnswerIncorrect || aprovedAnswer === null}
+                  colorScheme="green"
+                >
                   Aprovar
                 </Button>
               </ButtonGroup>
@@ -151,7 +154,10 @@ function PendingProjectBoxModal(): JSX.Element {
                 >
                   Cancelar
                 </Button>
-                <Button disabled={reprovedAnswerIncorrect} colorScheme="red">
+                <Button
+                  disabled={reprovedAnswerIncorrect || reprovedAnswer === null}
+                  colorScheme="red"
+                >
                   Reprovar
                 </Button>
               </ButtonGroup>

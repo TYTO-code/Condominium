@@ -131,7 +131,10 @@ function MessageBox({
                 >
                   Cancelar
                 </Button>
-                <Button disabled={answerIncorrect} colorScheme="green">
+                <Button
+                  disabled={answerIncorrect || answer === null}
+                  colorScheme="green"
+                >
                   Responder
                 </Button>
               </ButtonGroup>
