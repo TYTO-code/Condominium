@@ -10,50 +10,15 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 
+import { validateEmail } from '../../utils/validateEmail';
+import { validateFunction } from '../../utils/validateFunction';
+import { validateName } from '../../utils/validateName';
+import { validatePassword } from '../../utils/validatPassword';
+
 interface CreateAdmProps {
   children?: JSX.Element;
 }
 function CreateAdm({ children }: CreateAdmProps): JSX.Element {
-  function validateName(value: string): string {
-    let error = '';
-    if (value.length === 0) {
-      error = 'Nome é obrigatório!';
-    }
-    return error;
-  }
-
-  function validateFunction(value: string): string {
-    let error = '';
-    if (value.length === 0) {
-      error = 'Função é obrigatório!';
-    }
-    return error;
-  }
-
-  function validatePassword(value: string): string {
-    const error = '';
-    if (value.length === 0) {
-      return 'Senha é obrigatória!';
-    }
-
-    if (value.length <= 6) {
-      return 'Senha precisa ter mais de 6 caractéres!';
-    }
-
-    return error;
-  }
-
-  function validateEmail(email: string): string {
-    const error = '';
-    if (email.length === 0) {
-      return 'Email é obrigatório!';
-    }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-      return 'Email inválido!';
-    }
-    return error;
-  }
-
   return (
     <Flex align="center" justify="center" direction="column">
       <Formik

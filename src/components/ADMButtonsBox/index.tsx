@@ -29,6 +29,8 @@ import {
 import './styles.css';
 import { Field, Form, Formik } from 'formik';
 
+import { validateName } from '../../utils/validateName';
+
 interface ADMButtonsBoxProps {
   children?: JSX.Element;
   data?: any;
@@ -36,14 +38,6 @@ interface ADMButtonsBoxProps {
 function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isEditModal, setIsEditModal] = useState(true);
-
-  function validateName(value: string): string {
-    let error = '';
-    if (value.length === 0) {
-      error = 'Nome é obrigatório!';
-    }
-    return error;
-  }
 
   function handleOpenEditModal(): void {
     setIsEditModal(true);

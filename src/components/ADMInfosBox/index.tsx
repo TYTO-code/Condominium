@@ -20,6 +20,9 @@ import {
   FormLabel
 } from '@chakra-ui/react';
 import { Formik, Field, Form } from 'formik';
+
+import { validateEmail } from '../../utils/validateEmail';
+import { validateName } from '../../utils/validateName';
 import './styles.css';
 
 interface ADMInfosBoxProps {
@@ -29,24 +32,6 @@ interface ADMInfosBoxProps {
 }
 function ADMInfosBox({ children, name, email }: ADMInfosBoxProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  function validateName(value: string): string {
-    let error = '';
-    if (value.length === 0) {
-      error = 'Nome é obrigatório!';
-    }
-    return error;
-  }
-  function validateEmail(email: string): string {
-    const error = '';
-    if (email.length === 0) {
-      return 'Email é obrigatório!';
-    }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
-      return 'Email inválido!';
-    }
-    return error;
-  }
 
   return (
     <Flex
