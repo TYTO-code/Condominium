@@ -21,9 +21,13 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Box
+  Box,
+  FormControl,
+  FormLabel,
+  FormErrorMessage
 } from '@chakra-ui/react';
 import './styles.css';
+import { Field, Form, Formik } from 'formik';
 
 interface ADMButtonsBoxProps {
   children?: JSX.Element;
@@ -32,6 +36,14 @@ interface ADMButtonsBoxProps {
 function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isEditModal, setIsEditModal] = useState(true);
+
+  function validateName(value: string): string {
+    let error = '';
+    if (value.length === 0) {
+      error = 'Nome é obrigatório!';
+    }
+    return error;
+  }
 
   function handleOpenEditModal(): void {
     setIsEditModal(true);
@@ -50,81 +62,134 @@ function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
 
   return (
     <Flex>
-      <Modal isOpen={isOpen} onClose={() => handleCloseModal()}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <h1>{isEditModal ? 'Editar condomínio' : 'Excluir condomínio'}</h1>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Stack spacing={4}>
-              {isEditModal ? (
-                <>
-                  <Box>
-                    <Text>Nome:</Text>
-                    <Input
-                      variant="outline"
-                      borderColor="blue.200"
-                      placeholder="Nome"
-                    />
-                  </Box>
-                  <Box>
-                    <Text>Quantidade de blocos:</Text>
-                    <NumberInput defaultValue={1} min={1} max={60}>
-                      <NumberInputField />
-                      <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                      </NumberInputStepper>
-                    </NumberInput>
-                  </Box>
-                  <Box>
-                    <Text>Quantidade de apartamentos:</Text>
-                    <NumberInput defaultValue={1} min={1} max={60}>
-                      <NumberInputField />
-                      <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                      </NumberInputStepper>
-                    </NumberInput>
-                  </Box>
-                </>
-              ) : (
-                <Text>Deseja excluir esse condomínio?</Text>
-              )}
-            </Stack>
-          </ModalBody>
+      <Formik
+        initialValues={{ name: '', amountBlocks: 1, amountApt: 1 }}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+            onClose();
+          }, 1000);
+        }}
+      >
+        {props => (
+          <Modal isOpen={isOpen} onClose={() => handleCloseModal()}>
+            <ModalOverlay />
+            <Form>
+              <ModalContent>
+                <ModalHeader>
+                  <h1>
+                    {isEditModal ? 'Editar condomínio' : 'Excluir condomínio'}
+                  </h1>
+                </ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Stack spacing={4}>
+                    {isEditModal ? (
+                      <>
+                        <Field name="name" validate={validateName}>
+                          {({ field, form }) => (
+                            <FormControl
+                              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                              isInvalid={form.errors.name && form.touched.name}
+                            >
+                              <FormLabel>Nome</FormLabel>
+                              <Input {...field} placeholder="Nome" />
+                              <FormErrorMessage>
+                                {form.errors.name}
+                              </FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                        <Field name="amountBlocks">
+                          {({ field, form }) => (
+                            <FormControl>
+                              <FormLabel>Quantidade de blocos:</FormLabel>
+                              <NumberInput
+                                {...field}
+                                defaultValue={1}
+                                min={1}
+                                max={60}
+                              >
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                  <NumberIncrementStepper />
+                                  <NumberDecrementStepper />
+                                </NumberInputStepper>
+                              </NumberInput>
+                              <FormErrorMessage>
+                                {form.errors.amountBlocks}
+                              </FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                        <Field name="amountApt">
+                          {({ field, form }) => (
+                            <FormControl>
+                              <FormLabel>Quantidade de apartamentos:</FormLabel>
+                              <NumberInput
+                                {...field}
+                                defaultValue={1}
+                                min={1}
+                                max={60}
+                              >
+                                <NumberInputField />
+                                <NumberInputStepper>
+                                  <NumberIncrementStepper />
+                                  <NumberDecrementStepper />
+                                </NumberInputStepper>
+                              </NumberInput>
+                              <FormErrorMessage>
+                                {form.errors.amountApt}
+                              </FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                      </>
+                    ) : (
+                      <Text>Deseja excluir esse condomínio?</Text>
+                    )}
+                  </Stack>
+                </ModalBody>
 
-          <ModalFooter>
-            {isEditModal ? (
-              <ButtonGroup>
-                <Button
-                  colorScheme="red"
-                  mr={3}
-                  variant="ghost"
-                  onClick={onClose}
-                >
-                  Cancelar
-                </Button>
-                <Button colorScheme="green">Editar</Button>
-              </ButtonGroup>
-            ) : (
-              <ButtonGroup>
-                <Button
-                  colorScheme="gray"
-                  mr={3}
-                  variant="ghost"
-                  onClick={onClose}
-                >
-                  Cancelar
-                </Button>
-                <Button colorScheme="red">Excluir</Button>
-              </ButtonGroup>
-            )}
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+                <ModalFooter>
+                  {isEditModal ? (
+                    <ButtonGroup>
+                      <Button
+                        colorScheme="red"
+                        mr={3}
+                        variant="ghost"
+                        onClick={onClose}
+                      >
+                        Cancelar
+                      </Button>
+                      <Button
+                        type="submit"
+                        isLoading={props.isSubmitting}
+                        colorScheme="green"
+                      >
+                        Editar
+                      </Button>
+                    </ButtonGroup>
+                  ) : (
+                    <ButtonGroup>
+                      <Button
+                        colorScheme="gray"
+                        mr={3}
+                        variant="ghost"
+                        onClick={onClose}
+                      >
+                        Cancelar
+                      </Button>
+                      <Button colorScheme="red">Excluir</Button>
+                    </ButtonGroup>
+                  )}
+                </ModalFooter>
+              </ModalContent>
+            </Form>
+          </Modal>
+        )}
+      </Formik>
       <ButtonGroup>
         <Button colorScheme="facebook" onClick={() => handleOpenEditModal()}>
           <EditIcon />
