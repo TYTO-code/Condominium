@@ -25,9 +25,17 @@ import {
   Th,
   Tbody,
   Td,
-  Box
+  Box,
+  FormLabel,
+  FormControl,
+  FormErrorMessage
 } from '@chakra-ui/react';
+
 import './styles.css';
+import { Field, Form, Formik } from 'formik';
+
+import { validateFunction } from '../../utils/validateFunction';
+import { validateName } from '../../utils/validateName';
 
 interface ProjectBoxProps {
   children?: JSX.Element;
@@ -59,80 +67,124 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
     >
       <Modal isOpen={isOpen} onClose={() => handleCloseModal()}>
         <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-            <h1>
-              {isAddEmployeeModal ? 'Adicionar funcionário' : 'Funcionários'}
-            </h1>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {isAddEmployeeModal ? (
-              <Stack spacing={4}>
-                <Input
-                  variant="outline"
-                  borderColor="blue.200"
-                  placeholder="Nome"
-                />
-                <Input
-                  variant="outline"
-                  borderColor="blue.200"
-                  placeholder="Função"
-                />
-              </Stack>
-            ) : (
-              <TableContainer>
-                <Table variant="simple" colorScheme="teal">
-                  <Thead>
-                    <Tr>
-                      <Th>Nome</Th>
-                      <Th>Função</Th>
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    <Tr>
-                      <Td>Dayvid Santana</Td>
-                      <Td>Programador de sistemas</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Breno Andrade</Td>
-                      <Td>Programador de sistemas</Td>
-                    </Tr>
-                    <Tr>
-                      <Td>Igor Monteiro</Td>
-                      <Td>Programador de sistemas</Td>
-                    </Tr>
-                  </Tbody>
-                </Table>
-              </TableContainer>
-            )}
-          </ModalBody>
+        <>
+          <Formik
+            initialValues={{ name: '', func: '' }}
+            onSubmit={(values, actions) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                actions.setSubmitting(false);
+              }, 1000);
+            }}
+          >
+            {props => (
+              <Form>
+                <ModalContent>
+                  <ModalHeader>
+                    <h1>
+                      {isAddEmployeeModal
+                        ? 'Adicionar funcionário'
+                        : 'Funcionários'}
+                    </h1>
+                  </ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    {isAddEmployeeModal ? (
+                      <Stack spacing={4}>
+                        <Field name="name" validate={validateName}>
+                          {({ field, form }) => (
+                            <FormControl
+                              isRequired
+                              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                              isInvalid={form.errors.name && form.touched.name}
+                            >
+                              <FormLabel>Nome</FormLabel>
+                              <Input {...field} placeholder="Nome" />
+                              <FormErrorMessage>
+                                {form.errors.name}
+                              </FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                        <Field name="func" validate={validateFunction}>
+                          {({ field, form }) => (
+                            <FormControl
+                              isRequired
+                              // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                              isInvalid={form.errors.func && form.touched.func}
+                            >
+                              <FormLabel>Função</FormLabel>
+                              <Input {...field} placeholder="Função" />
+                              <FormErrorMessage>
+                                {form.errors.func}
+                              </FormErrorMessage>
+                            </FormControl>
+                          )}
+                        </Field>
+                      </Stack>
+                    ) : (
+                      <TableContainer>
+                        <Table variant="simple" colorScheme="teal">
+                          <Thead>
+                            <Tr>
+                              <Th>Nome</Th>
+                              <Th>Função</Th>
+                            </Tr>
+                          </Thead>
+                          <Tbody>
+                            <Tr>
+                              <Td>Dayvid Santana</Td>
+                              <Td>Programador de sistemas</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Breno Andrade</Td>
+                              <Td>Programador de sistemas</Td>
+                            </Tr>
+                            <Tr>
+                              <Td>Igor Monteiro</Td>
+                              <Td>Programador de sistemas</Td>
+                            </Tr>
+                          </Tbody>
+                        </Table>
+                      </TableContainer>
+                    )}
+                  </ModalBody>
 
-          <ModalFooter>
-            {isAddEmployeeModal ? (
-              <ButtonGroup>
-                <Button
-                  colorScheme="red"
-                  mr={3}
-                  variant="ghost"
-                  onClick={onClose}
-                >
-                  Cancelar
-                </Button>
-                <Button colorScheme="green">Adicionar</Button>
-              </ButtonGroup>
-            ) : (
-              <Button
-                colorScheme="gray"
-                mr={3}
-                variant="ghost"
-                onClick={onClose}
-              >
-                Fechar
-              </Button>
+                  <ModalFooter>
+                    {isAddEmployeeModal ? (
+                      <ButtonGroup>
+                        <Button
+                          colorScheme="red"
+                          mr={3}
+                          variant="ghost"
+                          onClick={onClose}
+                        >
+                          Cancelar
+                        </Button>
+                        <Button
+                          type="submit"
+                          isLoading={props.isSubmitting}
+                          colorScheme="green"
+                        >
+                          Adicionar
+                        </Button>
+                      </ButtonGroup>
+                    ) : (
+                      <Button
+                        colorScheme="gray"
+                        mr={3}
+                        variant="ghost"
+                        onClick={onClose}
+                      >
+                        Fechar
+                      </Button>
+                    )}
+                  </ModalFooter>
+                </ModalContent>
+              </Form>
             )}
-          </ModalFooter>
-        </ModalContent>
+          </Formik>
+        </>
       </Modal>
       <Box
         w={{
