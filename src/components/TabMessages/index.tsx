@@ -1,7 +1,7 @@
 import { Flex, Stack } from '@chakra-ui/react';
 
-import MessageBox from '../MessageBox';
 import PanelHeader from '../PanelHeader';
+import MessageBox from './MessageBox';
 
 function TabMessages(): JSX.Element {
   return (

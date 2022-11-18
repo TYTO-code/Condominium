@@ -14,11 +14,11 @@ import {
   Text
 } from '@chakra-ui/react';
 
-import ADMInfosBox from '../ADMInfosBox';
 import CondominiumBox from '../CondominiumBox';
-import CreateAdm from '../CreateAdm';
-import CreateCondominium from '../CreateCondominium';
 import PanelHeader from '../PanelHeader';
+import ADMInfosBox from './ADMInfosBox';
+import CreateAdm from './CreateAdm';
+import CreateCondominium from './CreateCondominium';
 
 function TabUsers(): JSX.Element {
   const [isAddAdmModal, setIsAddAdmModal] = useState(false);

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 
 import PanelHeader from '../../components/PanelHeader';
-import PendingProjectBox from '../../components/PendingProjectBox';
+import PendingProjectBox from '../../components/TabSubmittedProjects/PendingProjectBox';
 import TabHome from '../../components/TabHome';
 import TabMessages from '../../components/TabMessages';
 import TabSubmittedProjects from '../../components/TabSubmittedProjects';

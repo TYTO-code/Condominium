@@ -1,7 +1,7 @@
 import { Center, Flex, Stack, Text } from '@chakra-ui/react';
 
 import PanelHeader from '../PanelHeader';
-import PendingProjectBox from '../PendingProjectBox';
+import PendingProjectBox from './PendingProjectBox';
 
 function TabSubmittedProjects(): JSX.Element {
   return (

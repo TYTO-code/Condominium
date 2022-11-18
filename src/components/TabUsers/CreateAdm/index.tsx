@@ -10,10 +10,10 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 
-import { validateEmail } from '../../utils/validateEmail';
-import { validateFunction } from '../../utils/validateFunction';
-import { validateName } from '../../utils/validateName';
-import { validatePassword } from '../../utils/validatPassword';
+import { validateEmail } from '../../../utils/validateEmail';
+import { validateFunction } from '../../../utils/validateFunction';
+import { validateName } from '../../../utils/validateName';
+import { validatePassword } from '../../../utils/validatPassword';
 
 interface CreateAdmProps {
   children?: JSX.Element;

@@ -14,7 +14,7 @@ import {
 
 import EmployeeProjectBox from '../../components/EmployeeProjectBox';
 import PanelHeader from '../../components/PanelHeader';
-import PendingProjectBox from '../../components/PendingProjectBox';
+import PendingProjectBox from '../../components/TabSubmittedProjects/PendingProjectBox';
 import SyndicProjectBox from '../../components/SyndicProjectBox';
 
 function SyndicPanel(): JSX.Element {

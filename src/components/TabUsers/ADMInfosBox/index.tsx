@@ -21,8 +21,8 @@ import {
 } from '@chakra-ui/react';
 import { Formik, Field, Form } from 'formik';
 
-import { validateEmail } from '../../utils/validateEmail';
-import { validateName } from '../../utils/validateName';
+import { validateEmail } from '../../../utils/validateEmail';
+import { validateName } from '../../../utils/validateName';
 import './styles.css';
 
 interface ADMInfosBoxProps {

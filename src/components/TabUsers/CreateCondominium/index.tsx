@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 
-import { validateName } from '../../utils/validateName';
+import { validateName } from '../../../utils/validateName';
 
 interface CreateCondominiumProps {
   children?: JSX.Element;
