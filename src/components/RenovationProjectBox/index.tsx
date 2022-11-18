@@ -1,3 +1,5 @@
+import { ChangeEvent, useState } from 'react';
+
 import { ChatIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -12,8 +14,8 @@ import {
   ModalBody,
   ModalCloseButton,
   Input,
-  useToast,
-  ToastId
+  FormControl,
+  FormErrorMessage
 } from '@chakra-ui/react';
 
 interface ProjectBoxProps {
@@ -22,29 +24,13 @@ interface ProjectBoxProps {
 }
 function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
 
-  function handleOpenSuccessToast(): ToastId {
-    return toast({
-      title: 'Denúncia realizada.',
-      description: 'Aguarde a administração.',
-      status: 'success',
-      position: 'top',
-      duration: 9000,
-      isClosable: true
-    });
-  }
+  const [answer, setAnswer] = useState<string | null>(null);
 
-  function handleOpenErrorToast(): ToastId {
-    return toast({
-      title: 'Ocorreu um erro.',
-      description: 'Tente novamente ou entre em contato.',
-      status: 'error',
-      position: 'top',
-      duration: 9000,
-      isClosable: true
-    });
-  }
+  const handleAprovedAnswerChange = (e: ChangeEvent<HTMLInputElement>): void =>
+    setAnswer(e.target.value);
+
+  const answerIncorrect = answer === '';
 
   return (
     <Flex
@@ -65,12 +51,22 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
           <ModalHeader>Fazer denúncia</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Input
-              variant="outline"
-              borderColor="blue.200"
-              outlineColor="blue.200"
-              placeholder="Descrição"
-            />
+            <FormControl isInvalid={answerIncorrect}>
+              <Input
+                value={answer ?? ''}
+                onChange={handleAprovedAnswerChange}
+                variant="outline"
+                borderColor="blue.200"
+                outlineColor="blue.200"
+                maxLength={100}
+                placeholder="Resposta"
+              />
+              {answerIncorrect && (
+                <FormErrorMessage>
+                  A resposta ao cliente é obrigatória!
+                </FormErrorMessage>
+              )}
+            </FormControl>
           </ModalBody>
 
           <ModalFooter>
@@ -80,9 +76,9 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
             <Button
               colorScheme="green"
               onClick={() => {
-                handleOpenSuccessToast();
                 onClose();
               }}
+              disabled={answerIncorrect || answer === null}
             >
               Cadastrar
             </Button>
