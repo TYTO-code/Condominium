@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   Button,
   Center,
@@ -21,8 +23,23 @@ import { validatePassword } from '../../utils/validatPassword';
 function Login(): JSX.Element {
   return (
     <Flex h="100%">
-      <Center w="50%" display={{ base: 'none', md: 'flex' }} h="100%" bg="blue">
-        Apresentação
+      <Center
+        flexDirection="column"
+        gap={4}
+        w="50%"
+        display={{ base: 'none', md: 'flex' }}
+        h="100%"
+        bg="blue"
+      >
+        <Button w="200px">
+          <Link to="/painel-associado">Painel dos associados</Link>
+        </Button>
+        <Button w="200px">
+          <Link to="/painel-morador">Painel dos moradores</Link>
+        </Button>
+        <Button w="200px">
+          <Link to="/painel-sindico">Painel do sindico</Link>
+        </Button>
       </Center>
       <Center w={{ base: '100%', md: '50%' }} h="100%" flexDirection="column">
         <Heading my={6} as="h4" size="md">
