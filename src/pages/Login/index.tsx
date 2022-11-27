@@ -16,8 +16,6 @@ import {
 import { Field, Form, Formik } from 'formik';
 
 import { validateEmail } from '../../utils/validateEmail';
-import { validateFunction } from '../../utils/validateFunction';
-import { validateName } from '../../utils/validateName';
 import { validatePassword } from '../../utils/validatPassword';
 
 function Login(): JSX.Element {
@@ -28,7 +26,7 @@ function Login(): JSX.Element {
       </Center>
       <Center w={{ base: '100%', md: '50%' }} h="100%" flexDirection="column">
         <Heading my={6} as="h4" size="md">
-          Entrar no sistema
+          Obra no Condomínio
         </Heading>
         <Tabs>
           <TabList>
