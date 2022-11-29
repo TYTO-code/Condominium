@@ -72,7 +72,6 @@ function ProjectBox({ children, title }: ProjectBoxProps): JSX.Element {
             initialValues={{ name: '', func: '' }}
             onSubmit={(values, actions) => {
               setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
                 actions.setSubmitting(false);
               }, 1000);
             }}

@@ -57,7 +57,6 @@ function Login(): JSX.Element {
                 initialValues={{ email: '', password: '' }}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
                     actions.setSubmitting(false);
                   }, 1000);
                 }}
@@ -120,7 +119,6 @@ function Login(): JSX.Element {
                 initialValues={{ id: '' }}
                 onSubmit={(values, actions) => {
                   setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
                     actions.setSubmitting(false);
                   }, 1000);
                 }}

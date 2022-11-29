@@ -60,7 +60,6 @@ function ADMButtonsBox({ children, data }: ADMButtonsBoxProps): JSX.Element {
         initialValues={{ name: '', amountBlocks: 1, amountApt: 1 }}
         onSubmit={(values, actions) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
             onClose();
           }, 1000);

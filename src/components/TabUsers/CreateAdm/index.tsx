@@ -25,7 +25,6 @@ function CreateAdm({ children }: CreateAdmProps): JSX.Element {
         initialValues={{ name: '', email: '', func: '', password: '' }}
         onSubmit={(values, actions) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
           }, 1000);
         }}

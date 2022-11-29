@@ -47,7 +47,6 @@ function ADMInfosBox({ children, name, email }: ADMInfosBoxProps): JSX.Element {
         initialValues={{ name: '', email: '' }}
         onSubmit={(values, actions) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
             onClose();
           }, 1000);
